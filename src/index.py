@@ -3,11 +3,13 @@ import datetime
 import random
 import math
 import copy
+import re
+from urllib import parse,request
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix='·', description="El guardian de OPIPARO PEPINO.")
 
-# Comando sueltos
+##### Comando sueltos
 
 @bot.command()
 async def boss(ctx):
@@ -65,6 +67,23 @@ async def divide(ctx, n1: int,n2: int):
     except:
         await ctx.send("No me hagas perder el tiempo.")
 
+### Youtube
+
+@bot.command()
+async def youtube(ctx, *, search):
+    query_string = parse.urlencode({'search_query': search})
+    html_content = request.urlopen('http://www.youtube.com/results?'+ query_string)
+    search_results = re.findall('href=\"\\/watch\\?v=(.{11})', html_content.read().decode())
+    await ctx.send('https://www.youtube.com/watch?v='+ search_results[0])
+
+@bot.command()
+async def cumbia(ctx):
+    search = "cumbia drive"
+    aleatorio= random.randint(0,40)
+    query_string = parse.urlencode({'search_query': search})
+    html_content = request.urlopen('http://www.youtube.com/results?'+ query_string)
+    search_results = re.findall('href=\"\\/watch\\?v=(.{11})', html_content.read().decode())
+    await ctx.send('https://www.youtube.com/watch?v='+ search_results[aleatorio])
 ##### Mini- Juegos
 
 @bot.command()
@@ -99,9 +118,9 @@ async def probabilidad(ctx,pregunta):
 
     embed = discord.Embed(title=f"PROBABILIDADES",description="""Hay un {}% de probabilidades de {}.
 
-                 0%                     50%                       100%
+                 0%                     50%                     100%
                  A+++++++++++++++++++++++A+++++++++++++++++++++++A
-                 A{}|
+                 C{}|
                  A+++++++++++++++++++++++A+++++++++++++++++++++++A
                  
                  Guardian{}""".format(probabilidad,pregunta,separador*probabilidad2,respuesta),color=discord.Color.blue())
