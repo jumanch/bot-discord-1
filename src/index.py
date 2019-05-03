@@ -40,7 +40,7 @@ async def suma(ctx, n1: int,n2: int):
 async def resta(ctx, n1: int,n2: int):
     solucion = n1 - n2
     if solucion == 0:
-        await ctx.send("Si tu tienes {} galletas y las repartes entre {} amigos, te sigues quedando con {} galletas.".format(n1,n2,n1))
+        await ctx.send("Si tu tienes {} galletas y las repartes entre {} amigos, te sigues quedando con {} galletas y con {} amigos.".format(n1,n2,n1,n2))
     else:
         await ctx.send("Entendido, la resta de {} menos {} da {}".format(n1,n2,solucion))
 
