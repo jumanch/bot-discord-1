@@ -26,7 +26,7 @@ async def ping(ctx):
 async def motherfuker(ctx):
     await ctx.send("SOY UN HIJO DE PUTA QUE NO SE SUMAR")
 
-# Operaciones aritmeticas
+# Operaciones aritmeticas 
 
 @bot.command()
 async def suma(ctx, n1: int,n2: int):
